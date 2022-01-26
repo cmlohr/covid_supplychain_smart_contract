@@ -108,8 +108,6 @@ contract("ColdChain", (accounts) => {
     }
   });
 
-
-
   it("should add vax batches", async () => {
     for (let i = 0; i < Object.keys(this.defaultVaccineBatches).length; i++) {
       const { brand, manufacturer } = this.defaultVaccineBatches[i];
@@ -135,4 +133,27 @@ contract("ColdChain", (accounts) => {
     
     }
   });
+
+  it("should sign and store certificate", async () => {
+    const mnemonic =
+      "machine link corn enter marble march spray parent wash front desert misery";
+    const providerOrUrl = "http://localhost:8545";
+    const provider = new HDWalletProvider({ mnemonic, providerOrUrl });
+    this.web3 = new Web3(provider);
+
+    const { inspector, manufacturerA } = this.defaultEntities;
+    const vaccineBatchId = 0;
+    const message = `Inspector (${inspector.id}) certifies vaccine batch #${vaccineBatchId} for manufacturer (${manufacturerA.id}).`;
+    const signature = await this.web3.eth.sign(this.web3.utils.keccak256(message), inspector.id);
+
+    const result = await this.coldChainInstance.issueCertificate(inspector.id, manufacturerA.id, 
+      this.StatusEnums.manufactured.val, vaccineBatchId, signature, { from: this.owner });
+
+    expectEvent(result.receipt, "IssueCertificate", {
+      issuer: inspector.id,
+      prover: manufacturerA.id,
+      certificateId: new BN(0),
+    });
+   });
+
 });
