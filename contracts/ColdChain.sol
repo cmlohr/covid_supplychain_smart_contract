@@ -92,7 +92,7 @@ contract ColdChain {
     function addVaccineBatch(string memory brand, address manufacturer) public returns(uint){
         uint[] memory _certificateIds = new uint[](MAX_CERTIFICATIONS);
         uint id = vaccineBatchIds.length;
-        VaccineBatch memory entity = VaccineBatch(id, brand, manufacturer, _certificateIds);
+        VaccineBatch memory batch = VaccineBatch(id, brand, manufacturer, _certificateIds);
         
         vaccineBatches[id] = batch;
         vaccineBatchIds.push(id);
@@ -100,11 +100,11 @@ contract ColdChain {
         emit AddVaccineBatch(batch.id, batch.manufacturer);
         return id;
     }
-    function IssueCertificate(
+    function issueCertificate(
         address _issuer, address _prover, string memory _status, 
         uint vaccineBatchId, bytes memory signature) public returns (uint) {
             Entity memory issuer = entities[_issuer];
-            require(issuer.mode == Mode.ISSURER);
+            require(issuer.mode == Mode.ISSUER);
 
             Entity memory prover = entities[_prover];
             require(prover.mode == Mode.PROVER);
