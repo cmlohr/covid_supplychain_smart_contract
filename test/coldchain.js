@@ -90,20 +90,20 @@ contract("ColdChain", (accounts) => {
   });
 
 
-  // it("should add entities", async () => {
-  //   for (const entity in this.defaultEntities) {
-  //     const { id, mode } = this.defaultEntities[entity];
-  //     const result = await coldChainInstance.addEntity(id, mode, {
-  //       from: this.owner,
-  //     });
+  it("should add entities", async () => {
+    for (const entity in this.defaultEntities) {
+      const { id, mode } = this.defaultEntities[entity];
+      const result = await coldChainInstance.addEntity(id, mode, {
+        from: this.owner,
+      });
 
-  //     console.log(result);
-  //     expectedEvent(result.receipt, "AddEntity", {
-  //       entityId: id,
-  //       entityMode: mode,
-  //     });
-  //     break;
-  //     // assert.equal(actual, expected, errorMessage);
-  //   }
-  // });
+      console.log(result);
+      expectedEvent(result.receipt, "AddEntity", {
+        entityId: id,
+        entityMode: mode,
+      });
+      break;
+      // assert.equal(actual, expected, errorMessage);
+    }
+  });
 });
