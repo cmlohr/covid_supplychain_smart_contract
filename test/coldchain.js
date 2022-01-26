@@ -2,7 +2,6 @@
 
 const { expectEvent, BN } = require("@openzeppelin/test-helpers");
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-// const { before } = require("lodash");
 const Web3 = require("web3");
 
 const ColdChain = artifacts.require("ColdChain");
@@ -20,8 +19,8 @@ contract("ColdChain", (accounts) => {
 
     this.ModeEnums = {
       ISSUER: { val: "ISSUER", pos: 0 },
-      VERIFIER: { val: "VERIFIER", pos: 1 },
-      PROVER: { val: "PROVER", pos: 2 },
+      PROVER: { val: "PROVER", pos: 1 },
+      VERIFIER: { val: "VERIFIER", pos: 2 },
     };
     this.StatusEnums = {
       manufactured: { val: "MANUFACTURED", pos: 0 },
@@ -97,12 +96,10 @@ contract("ColdChain", (accounts) => {
         from: this.owner,
       });
 
-      // console.log(result);
       expectEvent(result.receipt, "AddEntity", {
         entityId: id,
         entityMode: mode,
       });
-      // break;
 
       const retrievedEntity = await this.coldChainInstance.entities.call(id);
       assert.equal(id, retrievedEntity.id, "error: id missmatch");
