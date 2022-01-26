@@ -172,16 +172,14 @@ contract("ColdChain", (accounts) => {
 
     const certificate = await this.coldChainInstance.certificates.call(0);
 
-    const signatureMatches = await this.coldChainInstance.issueCertificate(
+    const signerMatches = await this.coldChainInstance.isMatchingSignature(
       this.web3.utils.keccak256(message),
       certificate.id,
       inspector.id,
       { from: this.owner }
     );
 
-
-
-    assert.equal(signatureMatches, true);
+    assert.equal(signerMatches, true);
   
   });
 });
