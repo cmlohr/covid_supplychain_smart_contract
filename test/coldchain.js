@@ -8,7 +8,7 @@ const ColdChain = artifacts.require("ColdChain");
 
 contract('ColdChain', (accounts) => {
   before(async() => {
-    this.coldChainInstance = {}
+    
     this.owner = accounts[0];
     
     this.VACCINE_BRANDS = {
@@ -41,12 +41,25 @@ contract('ColdChain', (accounts) => {
       traveller: { id: accounts[7], mode: this.ModeEnums.PROVER.val },
       borderAgent: { id: accounts[8], mode: this.ModeEnums.VERIFIER.val },
     };
-  });
+
+    this.defaultVaccineBatches = {
+      0: {brand: this.VACCINE_BRANDS.Pfizer, manufacturer: this.defaultEntities.manufacturerA.id},
+      1: {brand: this.VACCINE_BRANDS.Moderna, manufacturer: this.defaultEntities.manufacturerA.id},
+      2: {brand: this.VACCINE_BRANDS.Janssen, manufacturer: this.defaultEntities.manufacturerB.id},
+      3: {brand: this.VACCINE_BRANDS.Sputnik, manufacturer: this.defaultEntities.manufacturerB.id},
+      4: {brand: this.VACCINE_BRANDS.Pfizer, manufacturer: this.defaultEntities.manufacturerB.id},
+      5: {brand: this.VACCINE_BRANDS.Pfizer, manufacturer: this.defaultEntities.manufacturerA.id},
+      6: {brand: this.VACCINE_BRANDS.Moderna, manufacturer: this.defaultEntities.manufacturerA.id},
+      7: {brand: this.VACCINE_BRANDS.Moderna, manufacturer: this.defaultEntities.manufacturerB.id},
+      8: {brand: this.VACCINE_BRANDS.Sputnik, manufacturer: this.defaultEntities.manufacturerB.id},
+      9: {brand: this.VACCINE_BRANDS.Janssen, manufacturer: this.defaultEntities.manufacturerA.id},
+  };
+
+  this.coldChainInstance = {}
+});
 
   it('should do stuff...', async () => {
     const coldChainInstance = await ColdChain.deployed();
-    // const balance = await coldChainInstance;
-
     assert.equal(actual, expected, errorMessage);
   });
 });
