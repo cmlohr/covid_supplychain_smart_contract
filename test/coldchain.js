@@ -1,17 +1,16 @@
 // tests with mocha and chai
 
-const {expectedEvent, BN } = require("@openzeppelin/test-helpers");
+const { expectedEvent, BN } = require("@openzeppelin/test-helpers");
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const { before } = require("lodash");
 const Web3 = require("web3");
 
 const ColdChain = artifacts.require("ColdChain");
 
-contract('ColdChain', (accounts) => {
-  before(async() => {
-    
+contract("ColdChain", (accounts) => {
+  before(async () => {
     this.owner = accounts[0];
-    
+
     this.VACCINE_BRANDS = {
       Pfizer: "Pfizer-BioNTech",
       Moderna: "Moderna",
@@ -20,9 +19,9 @@ contract('ColdChain', (accounts) => {
     };
 
     this.ModeEnums = {
-      ISSUER: { val: "ISSUER", pos: 0},
-      VERIFIER: { val: "VERIFIER", pos: 1},
-      PROVER: { val: "PROVER", pos: 2},
+      ISSUER: { val: "ISSUER", pos: 0 },
+      VERIFIER: { val: "VERIFIER", pos: 1 },
+      PROVER: { val: "PROVER", pos: 2 },
     };
     this.StatusEnums = {
       manufactured: { val: "MANUFACTURED", pos: 0 },
@@ -44,35 +43,67 @@ contract('ColdChain', (accounts) => {
     };
 
     this.defaultVaccineBatches = {
-      0: {brand: this.VACCINE_BRANDS.Pfizer, manufacturer: this.defaultEntities.manufacturerA.id},
-      1: {brand: this.VACCINE_BRANDS.Moderna, manufacturer: this.defaultEntities.manufacturerA.id},
-      2: {brand: this.VACCINE_BRANDS.Janssen, manufacturer: this.defaultEntities.manufacturerB.id},
-      3: {brand: this.VACCINE_BRANDS.Sputnik, manufacturer: this.defaultEntities.manufacturerB.id},
-      4: {brand: this.VACCINE_BRANDS.Pfizer, manufacturer: this.defaultEntities.manufacturerB.id},
-      5: {brand: this.VACCINE_BRANDS.Pfizer, manufacturer: this.defaultEntities.manufacturerA.id},
-      6: {brand: this.VACCINE_BRANDS.Moderna, manufacturer: this.defaultEntities.manufacturerA.id},
-      7: {brand: this.VACCINE_BRANDS.Moderna, manufacturer: this.defaultEntities.manufacturerB.id},
-      8: {brand: this.VACCINE_BRANDS.Sputnik, manufacturer: this.defaultEntities.manufacturerB.id},
-      9: {brand: this.VACCINE_BRANDS.Janssen, manufacturer: this.defaultEntities.manufacturerA.id},
-  };
+      0: {
+        brand: this.VACCINE_BRANDS.Pfizer,
+        manufacturer: this.defaultEntities.manufacturerA.id,
+      },
+      1: {
+        brand: this.VACCINE_BRANDS.Moderna,
+        manufacturer: this.defaultEntities.manufacturerA.id,
+      },
+      2: {
+        brand: this.VACCINE_BRANDS.Janssen,
+        manufacturer: this.defaultEntities.manufacturerB.id,
+      },
+      3: {
+        brand: this.VACCINE_BRANDS.Sputnik,
+        manufacturer: this.defaultEntities.manufacturerB.id,
+      },
+      4: {
+        brand: this.VACCINE_BRANDS.Pfizer,
+        manufacturer: this.defaultEntities.manufacturerB.id,
+      },
+      5: {
+        brand: this.VACCINE_BRANDS.Pfizer,
+        manufacturer: this.defaultEntities.manufacturerA.id,
+      },
+      6: {
+        brand: this.VACCINE_BRANDS.Moderna,
+        manufacturer: this.defaultEntities.manufacturerA.id,
+      },
+      7: {
+        brand: this.VACCINE_BRANDS.Moderna,
+        manufacturer: this.defaultEntities.manufacturerB.id,
+      },
+      8: {
+        brand: this.VACCINE_BRANDS.Sputnik,
+        manufacturer: this.defaultEntities.manufacturerB.id,
+      },
+      9: {
+        brand: this.VACCINE_BRANDS.Janssen,
+        manufacturer: this.defaultEntities.manufacturerA.id,
+      },
+    };
 
-  this.coldChainInstance = await ColdChain.deployed();
-  this.providerOrUrl = "http://localhost:8545";
-});
-
-  it('should add entities', async () => {
-    for(const entity in this.defaultEntities) {
-      const { id, mode } = this.defaultEntities[entity];
-      const result = await coldChainInstance.addEntity(id, mode, {from: this.owner});
-
-      console.log(result);
-      expectedEvent(result.receipt, 'AddEntity', {
-        entityId: id,
-        entityMode: mode,
-      });
-      break;
-          // assert.equal(actual, expected, errorMessage);
-    }
-
+    this.coldChainInstance = await ColdChain.deployed();
+    this.providerOrUrl = "http://localhost:8545";
   });
+  
+
+  // it("should add entities", async () => {
+  //   for (const entity in this.defaultEntities) {
+  //     const { id, mode } = this.defaultEntities[entity];
+  //     const result = await coldChainInstance.addEntity(id, mode, {
+  //       from: this.owner,
+  //     });
+
+  //     console.log(result);
+  //     expectedEvent(result.receipt, "AddEntity", {
+  //       entityId: id,
+  //       entityMode: mode,
+  //     });
+  //     break;
+  //     // assert.equal(actual, expected, errorMessage);
+  //   }
+  // });
 });
