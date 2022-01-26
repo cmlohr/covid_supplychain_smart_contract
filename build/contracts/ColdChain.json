@@ -75,7 +75,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -94,7 +95,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -167,7 +169,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -191,7 +194,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -210,7 +214,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -239,7 +244,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -349,7 +355,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"entityId\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"entityMode\",\"type\":\"string\"}],\"name\":\"AddEntity\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"vaccineBatchId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"manufacturer\",\"type\":\"address\"}],\"name\":\"AddVaccineBatch\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"issuer\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"prover\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"certificateId\",\"type\":\"uint256\"}],\"name\":\"IssueCertificate\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"MAX_CERTIFICATIONS\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_id\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_mode\",\"type\":\"string\"}],\"name\":\"addEntity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"brand\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"manufacturer\",\"type\":\"address\"}],\"name\":\"addVaccineBatch\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"certificateIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"certificates\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"id\",\"type\":\"address\"},{\"internalType\":\"enum ColdChain.Mode\",\"name\":\"mode\",\"type\":\"uint8\"},{\"internalType\":\"uint256[]\",\"name\":\"certificateIds\",\"type\":\"uint256[]\"}],\"internalType\":\"struct ColdChain.Entity\",\"name\":\"issuer\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"id\",\"type\":\"address\"},{\"internalType\":\"enum ColdChain.Mode\",\"name\":\"mode\",\"type\":\"uint8\"},{\"internalType\":\"uint256[]\",\"name\":\"certificateIds\",\"type\":\"uint256[]\"}],\"internalType\":\"struct ColdChain.Entity\",\"name\":\"prover\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"},{\"internalType\":\"enum ColdChain.Status\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"entities\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"id\",\"type\":\"address\"},{\"internalType\":\"enum ColdChain.Mode\",\"name\":\"mode\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"message\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"issuer\",\"type\":\"address\"}],\"name\":\"isMatchingSignature\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_issuer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_prover\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_status\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"vaccineBatchId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"name\":\"issueCertificate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"vaccineBatchIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"vaccineBatches\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"brand\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"manufacturer\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/ColdChain.sol\":\"ColdChain\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/ColdChain.sol\":{\"keccak256\":\"0x2dbf83a7ffc54329158d1ea84153227db2bddef6d9ecb1dc8090e942e46b4c1e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9376289111ba031c7a2944d8e97a37ce9a2065d6db6034b250d6b52ea16430f4\",\"dweb:/ipfs/QmbyFq1dTvNTwSxNTtxXrL41NB8e958Jtz8YhcRny7MAWa\"]}},\"version\":1}",
@@ -28242,9 +28249,17 @@
     "name": "solc",
     "version": "0.8.11+commit.d7f03943.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1643207235278": {
+      "events": {},
+      "links": {},
+      "address": "0xfB9507b862D67E29a3Db7076a1010248F7BAf739",
+      "transactionHash": "0x3aa0e88894f327fe8427bf36fac90689fd1ff19112a07b3a2cf1b12c7509d254"
+    }
+  },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-01-26T14:40:28.879Z",
+  "updatedAt": "2022-01-26T14:48:23.949Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
