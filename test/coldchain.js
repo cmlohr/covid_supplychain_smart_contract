@@ -1,4 +1,9 @@
 // tests with mocha and chai
+
+const {expectedEvent, BN } = require("@openzeppelin/test-helpers");
+const HDWalletProvider = require("truffle-hdwallet-provider");
+const Web3 = require("web3");
+
 const ColdChain = artifacts.require("ColdChain");
 
 contract('ColdChain', (accounts) => {
