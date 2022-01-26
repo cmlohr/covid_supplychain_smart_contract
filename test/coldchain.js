@@ -165,4 +165,23 @@ contract("ColdChain", (accounts) => {
 
    });
 
+  it("should verify signature and certificate match", async () => {
+    const { inspector, manufacturerA } = this.defaultEntities;
+    const vaccineBatchId = 0;
+    const message = `Inspector (${inspector.id}) has certified vaccine batch #${vaccineBatchId} for manufacturer (${manufacturerA.id}).`;
+
+    const certificate = await this.coldChainInstance.certificates.call(0);
+
+    const result = await this.coldChainInstance.issueCertificate(
+      this.web3.utils.keccak256(message),
+      certificate.id,
+      inspector.id,
+      { from: this.owner }
+    );
+
+
+
+    assert.equal(retrievedCertificate.id, 0);
+  
+  });
 });
