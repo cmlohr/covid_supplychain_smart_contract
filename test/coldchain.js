@@ -154,6 +154,15 @@ contract("ColdChain", (accounts) => {
       prover: manufacturerA.id,
       certificateId: new BN(0),
     });
+
+    const retrievedCertificate = await this.coldChainInstance.certificates.call(0);
+
+    assert.equal(retrievedCertificate.id, 0);
+    assert.equal(retrievedCertificate.issuer["id"], inspector.id);
+    assert.equal(retrievedCertificate.prover["id"], manufacturerA.id);
+    assert.equal(retrievedCertificate.signature, signature);
+    assert.equal(retrievedCertificate.status, this.StatusEnums.manufactured.pos.toString());
+
    });
 
 });
