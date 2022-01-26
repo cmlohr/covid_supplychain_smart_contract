@@ -2,7 +2,7 @@
 
 const { expectedEvent, BN } = require("@openzeppelin/test-helpers");
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const { before } = require("lodash");
+// const { before } = require("lodash");
 const Web3 = require("web3");
 
 const ColdChain = artifacts.require("ColdChain");
@@ -88,7 +88,7 @@ contract("ColdChain", (accounts) => {
     this.coldChainInstance = await ColdChain.deployed();
     this.providerOrUrl = "http://localhost:8545";
   });
-  
+
 
   // it("should add entities", async () => {
   //   for (const entity in this.defaultEntities) {
