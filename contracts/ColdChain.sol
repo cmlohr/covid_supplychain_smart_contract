@@ -20,7 +20,7 @@ library CryptoSuite {
         (uint8 v, bytes32 r, bytes32 s) = splitSignature(sig);
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
         bytes32 prefixedHash = keccak256(abi.encodePacked(prefix, message));
-        return ecrecover(message, v, r, s);
+        return ecrecover(prefixedHash, v, r, s);
     }
 }
 
