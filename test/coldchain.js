@@ -4,8 +4,8 @@ const ColdChain = artifacts.require("ColdChain");
 contract('ColdChain', (accounts) => {
   it('should do stuff...', async () => {
     const coldChainInstance = await ColdChain.deployed();
-    const balance = await coldChainInstance.getBalance.call(accounts[0]);
+    // const balance = await coldChainInstance;
 
-    assert.equal(balance.valueOf(), 10000, "10000 wasn't in the first account");
+    assert.equal(actual, expected, errorMessage);
   });
 });
