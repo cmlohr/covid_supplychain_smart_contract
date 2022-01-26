@@ -97,13 +97,17 @@ contract("ColdChain", (accounts) => {
         from: this.owner,
       });
 
-      console.log(result);
+      // console.log(result);
       expectEvent(result.receipt, "AddEntity", {
         entityId: id,
         entityMode: mode,
       });
-      break;
-      // assert.equal(actual, expected, errorMessage);
+      // break;
+
+      const retrievedEntity = await this.coldChainInstance.entities.call(id);
+      assert.equal(id, retrievedEntity.id, "error: id missmatch");
+      assert.equal(this.ModeEnums[mode].pos, retrievedEntity.mode.toString(), "error: mode missmatch");
+
     }
   });
 });
