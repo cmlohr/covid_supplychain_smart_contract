@@ -107,4 +107,32 @@ contract("ColdChain", (accounts) => {
 
     }
   });
+
+
+
+  it("should add vax batches", async () => {
+    for (let i = 0; i < Object.keys(this.defaultVaccineBatches).length; i++) {
+      const { brand, manufacturer } = this.defaultVaccineBatches[i];
+      const result = await this.coldChainInstance.addVaccineBatch(
+        brand,
+        manufacturer,
+        {
+          from: this.owner,
+        }
+      );
+
+      expectEvent(result.receipt, "AddVaccineBatch", {
+      vaccineBatchId: String(i),
+        manufacturer: manufacturer,
+      });
+
+      const retrievedVaccineBatch = await this.coldChainInstance.vaccineBatches.call(i);
+      assert.equal(i, retrievedVaccineBatch.id);
+      assert.equal(brand, retrievedVaccineBatch.brand);
+      assert.equal(manufacturer, retrievedVaccineBatch.manufacturer);
+      assert.equal(undefined, retrievedVaccineBatch.certifivateIds);
+    
+    
+    }
+  });
 });
