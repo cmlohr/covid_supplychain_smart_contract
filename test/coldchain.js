@@ -93,7 +93,7 @@ contract("ColdChain", (accounts) => {
   it("should add entities", async () => {
     for (const entity in this.defaultEntities) {
       const { id, mode } = this.defaultEntities[entity];
-      const result = await coldChainInstance.addEntity(id, mode, {
+      const result = await this.coldChainInstance.addEntity(id, mode, {
         from: this.owner,
       });
 
