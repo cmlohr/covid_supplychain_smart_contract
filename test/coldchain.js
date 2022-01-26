@@ -1,6 +1,6 @@
 // tests with mocha and chai
 
-const { expectedEvent, BN } = require("@openzeppelin/test-helpers");
+const { expectEvent, BN } = require("@openzeppelin/test-helpers");
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 // const { before } = require("lodash");
 const Web3 = require("web3");
@@ -98,7 +98,7 @@ contract("ColdChain", (accounts) => {
       });
 
       console.log(result);
-      expectedEvent(result.receipt, "AddEntity", {
+      expectEvent(result.receipt, "AddEntity", {
         entityId: id,
         entityMode: mode,
       });
