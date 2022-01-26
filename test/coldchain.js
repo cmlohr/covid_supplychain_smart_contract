@@ -1,7 +1,8 @@
 // tests with mocha and chai
 
 const {expectedEvent, BN } = require("@openzeppelin/test-helpers");
-const HDWalletProvider = require("truffle-hdwallet-provider");
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const { before } = require("lodash");
 const Web3 = require("web3");
 
 const ColdChain = artifacts.require("ColdChain");
@@ -55,11 +56,23 @@ contract('ColdChain', (accounts) => {
       9: {brand: this.VACCINE_BRANDS.Janssen, manufacturer: this.defaultEntities.manufacturerA.id},
   };
 
-  this.coldChainInstance = {}
+  this.coldChainInstance = await ColdChain.deployed();
+  this.providerOrUrl = "http://localhost:8545";
 });
 
-  it('should do stuff...', async () => {
-    const coldChainInstance = await ColdChain.deployed();
-    assert.equal(actual, expected, errorMessage);
+  it('should add entities', async () => {
+    for(const entity in this.defaultEntities) {
+      const { id, mode } = this.defaultEntities[entity];
+      const result = await coldChainInstance.addEntity(id, mode, {from: this.owner});
+
+      console.log(result);
+      expectedEvent(result.receipt, 'AddEntity', {
+        entityId: id,
+        entityMode: mode,
+      });
+      break;
+          // assert.equal(actual, expected, errorMessage);
+    }
+
   });
 });
